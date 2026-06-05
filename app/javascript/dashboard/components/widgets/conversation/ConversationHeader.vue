@@ -16,6 +16,7 @@ import { useInbox } from 'dashboard/composables/useInbox';
 import { useAlert } from 'dashboard/composables';
 import { useI18n } from 'vue-i18n';
 import { copyTextToClipboard } from 'shared/helpers/clipboard';
+import { useConversationLabels } from 'dashboard/composables/useConversationLabels';
 
 const props = defineProps({
   chat: {
@@ -103,6 +104,18 @@ const copyConversationId = async () => {
     // error
   }
 };
+
+const { savedLabels, onUpdateLabels } = useConversationLabels();
+const isBotMode = computed(() => !savedLabels.value.includes('human'));
+
+const setHumanMode = () => {
+  if (!savedLabels.value.includes('human')) {
+    onUpdateLabels([...savedLabels.value, 'human']);
+  }
+};
+const setBotMode = () => {
+  onUpdateLabels(savedLabels.value.filter(l => l !== 'human'));
+};
 </script>
 
 <template>
@@ -172,6 +185,35 @@ const copyConversationId = async () => {
         :parent-width="width"
         class="hidden md:flex"
       />
+      <div
+        class="flex items-center h-8 p-1 rounded-full bg-n-alpha-2 text-sm flex-shrink-0"
+      >
+        <button
+          type="button"
+          class="flex items-center gap-1 px-2 h-6 rounded-full transition-colors"
+          :class="
+            isBotMode
+              ? 'bg-woot-500 text-white shadow-sm'
+              : 'text-n-slate-11 hover:text-n-slate-12'
+          "
+          @click="setBotMode"
+        >
+          <span class="i-lucide-bot size-3.5" />
+          {{ t('CONVERSATION.HEADER.TELEBOT_MODE') }}
+        </button>
+        <button
+          type="button"
+          class="flex items-center px-2 h-6 rounded-full transition-colors"
+          :class="
+            !isBotMode
+              ? 'bg-woot-500 text-white shadow-sm'
+              : 'text-n-slate-11 hover:text-n-slate-12'
+          "
+          @click="setHumanMode"
+        >
+          {{ t('CONVERSATION.HEADER.HUMAN_MODE') }}
+        </button>
+      </div>
       <ConversationCallButton :inbox="inbox" :chat="currentChat" />
       <MoreActions :conversation-id="currentChat.id" />
     </div>

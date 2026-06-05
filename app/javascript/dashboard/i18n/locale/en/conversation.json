@@ -106,6 +106,8 @@
       "CLOSE": "Close",
       "DETAILS": "details",
       "COPY_ID_SUCCESS": "Conversation ID copied to clipboard",
+      "TELEBOT_MODE": "TeleBot",
+      "HUMAN_MODE": "Human",
       "SNOOZED_UNTIL": "Snoozed until",
       "SNOOZED_UNTIL_TOMORROW": "Snoozed until tomorrow",
       "SNOOZED_UNTIL_NEXT_WEEK": "Snoozed until next week",
