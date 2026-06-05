@@ -106,15 +106,15 @@ const copyConversationId = async () => {
 };
 
 const { savedLabels, onUpdateLabels } = useConversationLabels();
-const isBotMode = computed(() => !savedLabels.value.includes('human'));
+const isBotMode = computed(() => savedLabels.value.includes('telebot'));
 
-const setHumanMode = () => {
-  if (!savedLabels.value.includes('human')) {
-    onUpdateLabels([...savedLabels.value, 'human']);
+const setBotMode = () => {
+  if (!savedLabels.value.includes('telebot')) {
+    onUpdateLabels([...savedLabels.value, 'telebot']);
   }
 };
-const setBotMode = () => {
-  onUpdateLabels(savedLabels.value.filter(l => l !== 'human'));
+const setHumanMode = () => {
+  onUpdateLabels(savedLabels.value.filter(l => l !== 'telebot'));
 };
 </script>
 
