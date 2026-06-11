@@ -104,6 +104,14 @@
           "ERROR": "Failed to update audio transcription setting"
         }
       },
+      "TELEBOT": {
+        "TITLE": "TeleBot AI Assistant",
+        "NOTE": "Show the TeleBot / Human toggle in conversation headers. Disable this to hide the toggle for all agents.",
+        "API": {
+          "SUCCESS": "TeleBot setting updated successfully",
+          "ERROR": "Failed to update TeleBot setting"
+        }
+      },
       "AUTO_RESOLVE_DURATION": {
         "LABEL": "Inactivity duration for resolution",
         "HELP": "Duration after a conversation should auto resolve if there is no activity",

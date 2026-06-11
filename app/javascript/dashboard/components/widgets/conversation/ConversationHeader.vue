@@ -17,6 +17,7 @@ import { useAlert } from 'dashboard/composables';
 import { useI18n } from 'vue-i18n';
 import { copyTextToClipboard } from 'shared/helpers/clipboard';
 import { useConversationLabels } from 'dashboard/composables/useConversationLabels';
+import { useAccount } from 'dashboard/composables/useAccount';
 
 const props = defineProps({
   chat: {
@@ -105,6 +106,11 @@ const copyConversationId = async () => {
   }
 };
 
+const { currentAccount } = useAccount();
+const isTelebotEnabled = computed(
+  () => !!currentAccount.value?.settings?.telebot_enabled
+);
+
 const { savedLabels, onUpdateLabels } = useConversationLabels();
 const isBotMode = computed(() => savedLabels.value.includes('telebot'));
 
@@ -186,6 +192,7 @@ const setHumanMode = () => {
         class="hidden md:flex"
       />
       <div
+        v-if="isTelebotEnabled"
         class="flex items-center h-8 p-1 rounded-full bg-n-alpha-2 text-sm flex-shrink-0"
       >
         <button
