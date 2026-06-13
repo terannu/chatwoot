@@ -16,6 +16,7 @@ import BuildInfo from './components/BuildInfo.vue';
 import AccountDelete from './components/AccountDelete.vue';
 import AudioTranscription from './components/AudioTranscription.vue';
 import TelebotEnabled from './components/TelebotEnabled.vue';
+import AutoGreeting from './components/AutoGreeting.vue';
 import SectionLayout from './components/SectionLayout.vue';
 
 export default {
@@ -27,6 +28,7 @@ export default {
     AccountDelete,
     AudioTranscription,
     TelebotEnabled,
+    AutoGreeting,
     SectionLayout,
     WithLabel,
     NextInput,
@@ -241,6 +243,7 @@ export default {
     </div>
     <AudioTranscription v-if="showAudioTranscriptionConfig" />
     <TelebotEnabled />
+    <AutoGreeting />
     <AccountId />
     <div v-if="!uiFlags.isFetchingItem && isOnChatwootCloud">
       <AccountDelete />

@@ -112,6 +112,16 @@
           "ERROR": "Failed to update TeleBot setting"
         }
       },
+      "AUTO_GREETING": {
+        "TITLE": "Auto Greetings to Client",
+        "NOTE": "Automatically send a greeting template to new leads at a set interval. Your Google Apps Script trigger must be configured to read this setting.",
+        "INTERVAL_LABEL": "Check every",
+        "INTERVAL_UNIT": "minutes",
+        "API": {
+          "SUCCESS": "Auto greeting setting updated successfully",
+          "ERROR": "Failed to update auto greeting setting"
+        }
+      },
       "AUTO_RESOLVE_DURATION": {
         "LABEL": "Inactivity duration for resolution",
         "HELP": "Duration after a conversation should auto resolve if there is no activity",
