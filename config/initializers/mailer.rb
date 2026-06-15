@@ -33,6 +33,16 @@ Rails.application.configure do
   # Use sendmail if using postfix for email
   config.action_mailer.delivery_method = :sendmail if ENV['SMTP_ADDRESS'].blank?
 
+  # Deliver via Brevo's HTTP API when BREVO_API_KEY is set. Used on hosts that
+  # block outbound SMTP ports (e.g. Railway) — the API runs over HTTPS (443).
+  # Registered through on_load to avoid autoloading BrevoApiDelivery during boot.
+  if ENV['BREVO_API_KEY'].present?
+    ActiveSupport.on_load(:action_mailer) do
+      add_delivery_method :brevo_api, BrevoApiDelivery
+      self.delivery_method = :brevo_api
+    end
+  end
+
   # You can use letter opener for your local development by setting the environment variable
   config.action_mailer.delivery_method = :letter_opener if Rails.env.development? && ENV['LETTER_OPENER']
 
