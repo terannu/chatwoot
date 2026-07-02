@@ -121,6 +121,7 @@ class Conversation < ApplicationRecord
   after_update_commit :execute_after_update_commit_callbacks
   after_create_commit :notify_conversation_creation
   after_create_commit :load_attributes_created_by_db_triggers
+  after_create_commit :apply_telebot_default_label
   before_destroy :set_unread_count_deletion_data
   after_destroy_commit :notify_conversation_deletion
 
@@ -270,6 +271,10 @@ class Conversation < ApplicationRecord
 
   def notify_conversation_creation
     dispatcher_dispatch(CONVERSATION_CREATED)
+  end
+
+  def apply_telebot_default_label
+    add_labels(['telebot']) if account.settings&.dig('telebot_default_enabled')
   end
 
   def notify_conversation_deletion

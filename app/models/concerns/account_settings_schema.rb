@@ -12,6 +12,7 @@ module AccountSettingsSchema
         'auto_resolve_label': { 'type': %w[string null] },
         'keep_pending_on_bot_failure': { 'type': %w[boolean null] },
         'telebot_enabled': { 'type': %w[boolean null] },
+        'telebot_default_enabled': { 'type': %w[boolean null] },
         'auto_greeting_enabled': { 'type': %w[boolean null] },
         'auto_greeting_interval': { 'type': %w[integer null], 'minimum': 1 },
         'captain_auto_resolve_mode': { 'type': %w[string null], 'enum': ['evaluated', 'legacy', 'disabled', nil] },

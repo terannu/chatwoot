@@ -112,6 +112,14 @@
           "ERROR": "Failed to update TeleBot setting"
         }
       },
+      "TELEBOT_DEFAULT": {
+        "TITLE": "Use TeleBot as default to answer client's chat",
+        "NOTE": "Automatically set new conversations to TeleBot mode, so the bot answers first. Agents can switch to Human anytime using the toggle in the conversation header.",
+        "API": {
+          "SUCCESS": "TeleBot default setting updated successfully",
+          "ERROR": "Failed to update TeleBot default setting"
+        }
+      },
       "AUTO_GREETING": {
         "TITLE": "Auto Greetings to Client",
         "NOTE": "Automatically send a greeting template to new leads at a set interval. Your Google Apps Script trigger must be configured to read this setting.",
